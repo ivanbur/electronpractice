@@ -5,25 +5,31 @@ const path                 = require('path');
 
 console.log('testing');
 
-var mainWindows = [];
+var mainWindow;
 
 function createWindow() {
-	mainWindows.push(new BrowserWindow({
-		width: 500,
-		height: 500,
+	mainWindow = new BrowserWindow({
+		width: 640,
+		height: 640,
 		webPreferences: {
 			nodeIntegration: true
 		}
-	}));
+	});
 
-	let index = mainWindows.length - 1;
+	mainWindow.loadFile('./index.html');
 
-	mainWindows[index].loadFile('./index.html');
-
-	mainWindows[index].on('close', function() {
-		mainWindows.splice(index);
+	mainWindow.on('close', function() {
+		mainWindow = null;
 		console.log('window closed');
 	})
+
+	// mainWindow.webContents.executeJavaScript(`
+	// 	let canvas = document.getElementById('canvas');
+
+	// 	alert('testing1');
+	// 	ellipse(10, 10, 10, 10, 10);
+	// 	alert('testing2');
+	// `);
 }
 
 app.on('ready', createWindow);
@@ -37,3 +43,4 @@ app.on('window-all-closed', function() {
 function testClick() {
 	console.log('button clicked');
 }
+
