@@ -1,9 +1,11 @@
 function setup() {
-	alert('width: ' + window.screen.width + ' height: ' + window.screen.height);
-	createCanvas(500, 500);
+	var canvas = createCanvas(640, 640);
+	canvas.parent('mycanvas');
+	background(0, 255, 0);
+	alert('width: ' + window.width + ' height: ' + window.height);
 }
 
 function draw() {
-	fill(100);
-	rect(0, 0, window.width, window.height);
+	// fill(200);
+	// rect(0, 0, window.width, window.height);
 }

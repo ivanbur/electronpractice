@@ -2,6 +2,7 @@ const electron             = require('electron');
 const {app, BrowserWindow} = electron;
 const ipc                  = electron.ipcRenderer;
 const path                 = require('path');
+require('electron-reload')(__dirname);
 
 console.log('testing');
 
@@ -13,23 +14,18 @@ function createWindow() {
 		height: 640,
 		webPreferences: {
 			nodeIntegration: true
-		}
+		},
+		useContentSize: true
 	});
 
 	mainWindow.loadFile('./index.html');
+
+	console.log(mainWindow.getSize());
 
 	mainWindow.on('close', function() {
 		mainWindow = null;
 		console.log('window closed');
 	})
-
-	// mainWindow.webContents.executeJavaScript(`
-	// 	let canvas = document.getElementById('canvas');
-
-	// 	alert('testing1');
-	// 	ellipse(10, 10, 10, 10, 10);
-	// 	alert('testing2');
-	// `);
 }
 
 app.on('ready', createWindow);
