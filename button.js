@@ -1,11 +1,15 @@
 class Button extends Obj {
-	constructor(x, y, width, height, color, textColor, text, textSize, visible) {
-		super(x, y, color, visible || true);
+	constructor(objName, x, y, width, height, color, textColor, text, textSize, visible) {
+		super(objName, x, y, color, visible || true);
 		this.width = width;
 		this.height = height;
-		this.textColor = textColor;
-		this.text = text || '';
-		this.textSize = textSize || 32;
+
+		let testText = new Text('testText', 0, 0, textColor, text, textSize, false);
+		let testWidth = testText.width;
+		let testHeight = testText.height;
+		testText = null;
+
+		this.text = new Text('textName', this.x + (this.width - testWidth) / 2, this.y + ((this.height - testHeight) / 2) + testHeight - 10, textColor, text, textSize, visible);
 	}
 
 	drawObj() {
@@ -13,9 +17,7 @@ class Button extends Obj {
 			fill(this.color);
 			noStroke();
 			rect(this.x, this.y, this.width, this.height);
-			fill(this.textColor);
-			textSize(this.textSize);
-			text(this.text, this.x + this.width / 5, this.y + this.height / 1.75);
+			this.text.drawObj();
 		}
 	}
 

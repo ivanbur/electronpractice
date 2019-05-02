@@ -1,5 +1,6 @@
 class Obj {
-	constructor(x, y, color, visible) {
+	constructor(objName, x, y, color, visible) {
+		this.name = objName;
 		this.x = x;
 		this.y = y;
 		this.color = color;
