@@ -6,8 +6,10 @@ class Screen {
 	}
 
 	drawScreen() {
-		for (let obj of this.list) {
-			obj.drawObj();
+		if (screen.visible) {
+			for (let obj of this.list) {
+				obj.drawObj();
+			}
 		}
 	}
 

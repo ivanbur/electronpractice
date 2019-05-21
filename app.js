@@ -2,7 +2,7 @@ const electron             = require('electron');
 const {app, BrowserWindow} = electron;
 const ipc                  = electron.ipcRenderer;
 const path                 = require('path');
-require('electron-reload')(__dirname);
+require('electron-reload')(__dirname); // allows it reload autmoatically when you make changes
 
 console.log('testing');
 
@@ -31,7 +31,7 @@ function createWindow() {
 app.on('ready', createWindow);
 
 app.on('window-all-closed', function() {
-	if (process.platform != 'darwin') {
+	if (process.platform != 'darwin') { // darwin means mac
 		app.quit();
 	}
 })
